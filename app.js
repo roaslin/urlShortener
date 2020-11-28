@@ -39,7 +39,13 @@ app.get("/:id", async (req, res) => {
 
   const originalURL = await service.findOriginalURLByUrlId(id);
 
-  res.redirect(301, originalURL);
+  if (!originalURL) {
+    const message = { message: "URL not found" };
+    res.statusCode = 404;
+    res.send(message);
+  } else {
+    res.redirect(301, originalURL);
+  }
 });
 
 app.listen(PORT, HOST);

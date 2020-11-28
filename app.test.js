@@ -39,9 +39,20 @@ describe("App should", () => {
   });
 
   it("redirect to original url when requesting short url", async (done) => {
-    const response = await appRequest.get("/Ab-1234");
+    const creationResponse = await appRequest.get("/create?url=http://www.google.com");
+    const shortUrl = creationResponse.body.url;
+
+    const response = await appRequest.get(`/${shortUrl}`);
 
     expect(response.status).toBe(301);
+
+    done();
+  });
+
+  it("return 404 when no url with that id exists", async (done) => {
+    const response = await appRequest.get("/Ab-1234");
+
+    expect(response.status).toBe(404);
 
     done();
   });

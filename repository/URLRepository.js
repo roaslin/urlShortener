@@ -1,11 +1,11 @@
 class URLRepository {
     urls = new Map();
-    
+
     constructor(urlIDprovider){
         this.urlIDprovider = urlIDprovider;
     }
-    save(url){
-        const urlId = this.urlIDprovider.urlId();
+    async save(url){
+        const urlId = await this.urlIDprovider.urlId();
         this.urls.set(urlId, url);
 
         return urlId;

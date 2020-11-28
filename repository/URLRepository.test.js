@@ -1,4 +1,5 @@
 jest.mock("../provider/CryptoURLIDProvider");
+const { async } = require("crypto-random-string");
 const CryptoURLIDProvider = require("../provider/CryptoURLIDProvider");
 const URLRepository = require("./URLRepository");
 
@@ -7,7 +8,7 @@ beforeEach(() => {
 });
 
 describe("URLRepository should", () => {
-  it("store urls", () => {
+  it("store urls", async () => {
     CryptoURLIDProvider.mockImplementation(() => {
       return {
         urlId: () => {
@@ -20,12 +21,12 @@ describe("URLRepository should", () => {
     const url = "https://www.google.com";
     const expectedShorURL = "Ab-123";
 
-    const result = repository.save(url);
+    const result = await repository.save(url);
 
     expect(result).toBe(expectedShorURL);
   });
 
-  it("retrieve original url", () => {
+  it("retrieve original url", async () => {
     CryptoURLIDProvider.mockImplementation(() => {
       return {
         urlId: () => {
@@ -37,7 +38,7 @@ describe("URLRepository should", () => {
     const repository = new URLRepository(idProvider);
     const url = "https://www.google.com";
 
-    const id = repository.save(url);
+    const id = await repository.save(url);
     const result = repository.findById(id);
 
     expect(result).toBe(url);
