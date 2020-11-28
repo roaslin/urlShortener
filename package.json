@@ -1,0 +1,26 @@
+{
+  "name": "urlshortener",
+  "version": "1.0.0",
+  "description": "Service to shorten urls",
+  "author": "Raul Mordillo Lluva",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "crypto-random-string": "^3.3.0",
+    "express": "^4.17.1",
+    "nodemon": "2.0.4",
+    "validator": "^13.1.17"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "supertest": "^6.0.1"
+  },
+  "jest": {
+    "testMatch": [
+      "**/?(*.)+(spec|test).[jt]s?(x)"
+    ]
+  }
+}
