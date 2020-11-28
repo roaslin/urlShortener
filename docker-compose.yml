@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  web:
+  api:
     build: 
       context: .
       dockerfile: Dockerfile.dev
@@ -8,9 +8,7 @@ services:
       - /app/node_modules
       - .:/app
     ports:
-      - "8080:8080"
+      - "9080:9080"
     environment: 
-      - PORT=8080
+      - PORT=9080
       - HOST=0.0.0.0
-
-

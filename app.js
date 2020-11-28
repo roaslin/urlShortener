@@ -1,6 +1,5 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const { restart } = require("nodemon");
 const validator = require("validator");
 const URLService = require("./service/URLService");
 const URLRepository = require("./repository/URLRepository");
