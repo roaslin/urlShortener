@@ -1,13 +1,18 @@
 class URLRepository {
+    urls = new Map();
+    
     constructor(urlIDprovider){
         this.urlIDprovider = urlIDprovider;
     }
     save(url){
-        return this.urlIDprovider.urlId();
+        const urlId = this.urlIDprovider.urlId();
+        this.urls.set(urlId, url);
+
+        return urlId;
     }
 
     findById(id){
-        return null;
+        return this.urls.get(id);
     }
 }
 

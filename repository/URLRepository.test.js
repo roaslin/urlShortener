@@ -24,4 +24,22 @@ describe("URLRepository should", () => {
 
     expect(result).toBe(expectedShorURL);
   });
+
+  it("retrieve original url", () => {
+    CryptoURLIDProvider.mockImplementation(() => {
+      return {
+        urlId: () => {
+          return "Ch-456";
+        },
+      };
+    });
+    const idProvider = new CryptoURLIDProvider();
+    const repository = new URLRepository(idProvider);
+    const url = "https://www.google.com";
+
+    const id = repository.save(url);
+    const result = repository.findById(id);
+
+    expect(result).toBe(url);
+  });
 });
