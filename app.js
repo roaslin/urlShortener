@@ -6,11 +6,8 @@ const URLService = require("./service/URLService");
 const URLRepository = require("./repository/URLRepository");
 const CryptoURLIDProvider = require("./provider/CryptoURLIDProvider");
 // ports
-// const PORT = process.env.PORT;
-// const HOST = process.env.HOST;
-
-const PORT = "8080";
-const HOST = "0.0.0.0";
+const PORT = process.env.PORT ? process.env.PORT : '9080';
+const HOST = process.env.HOST ? process.env.HOST : '0.0.0.0';
 
 const app = new express();
 const urlIDProvider = new CryptoURLIDProvider();
@@ -30,7 +27,7 @@ app.get("/create", async (req, res) => {
   } else {
     const shortUrl = await service.shorten(url);
 
-    res.send({ url: shortUrl });
+    res.send({ url: `http://${HOST}:${PORT}/${shortUrl}` });
   }
 });
 

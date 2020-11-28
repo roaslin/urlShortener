@@ -2,13 +2,7 @@ const app = require("./app");
 const supertest = require("supertest");
 const appRequest = supertest(app);
 
-beforeAll((done) => {
-  done();
-});
 
-afterAll((done) => {
-  done();
-});
 
 describe("App should", () => {
   it("return a shorten url", async (done) => {
@@ -40,9 +34,10 @@ describe("App should", () => {
 
   it("redirect to original url when requesting short url", async (done) => {
     const creationResponse = await appRequest.get("/create?url=http://www.google.com");
-    const shortUrl = creationResponse.body.url;
+    const url = creationResponse.body.url;
+    const id = url.substring(url.lastIndexOf('/'), url.length);
 
-    const response = await appRequest.get(`/${shortUrl}`);
+    const response = await appRequest.get(`${id}`);
 
     expect(response.status).toBe(301);
 
@@ -53,6 +48,7 @@ describe("App should", () => {
     const response = await appRequest.get("/Ab-1234");
 
     expect(response.status).toBe(404);
+    expect(response.body.message).toBe("URL not found");
 
     done();
   });
