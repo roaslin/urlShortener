@@ -34,6 +34,14 @@ app.get("/create", async (req, res) => {
   }
 });
 
+app.get("/:id", async (req, res) => {
+  const id = req.params.id;
+
+  const originalURL = await service.findOriginalURLByUrlId(id);
+
+  res.redirect(301, originalURL);
+});
+
 app.listen(PORT, HOST);
 
 console.log(`Listening on http://${HOST}:${PORT}`);

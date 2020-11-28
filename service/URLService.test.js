@@ -24,4 +24,23 @@ describe("URLService should", () => {
 
     expect(result).toBe(expectedURL);
   });
+
+  it("return the original url for a given urlId", () => {
+    URLRepository.mockImplementation(() => {
+      return {
+        findById: () => {
+          return "http://www.google.com";
+        },
+      };
+    });
+
+    const urlId = "Ch-456";
+    const repository = new URLRepository();
+    const service = new URLService(repository);
+    const expectedURL = "http://www.google.com";
+
+    const result = service.findOriginalURLByUrlId(urlId);
+
+    expect(result).toBe(expectedURL);
+  });
 });

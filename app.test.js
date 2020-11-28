@@ -37,4 +37,12 @@ describe("App should", () => {
 
     done();
   });
+
+  it("redirect to original url when requesting short url", async (done) => {
+    const response = await appRequest.get("/Ab-1234");
+
+    expect(response.status).toBe(301);
+
+    done();
+  });
 });
