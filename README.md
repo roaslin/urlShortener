@@ -18,3 +18,6 @@ http://0.0.0.0:9080/create?url=http://www.google.com
 
 - Accesing the shorten url
 http://0.0.0.0:9080/Ab-123
+
+### Architecture diagram
+https://drive.google.com/file/d/1Cjj3ak6e4RAJIisWPBaazaMXXFzMcEAN/view?usp=sharing
